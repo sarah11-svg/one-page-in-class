@@ -1,0 +1,723 @@
+---
+title: "AssignmentB"
+format: html
+editor: visual
+---
+
+```{r}
+#1.1
+p_1a <- 1:20
+print(list("1(a)" = p_1a))
+
+p_1b <- 20:1
+print(list("1(b)" = p_1b))
+
+p_1c <- c(1:20, 19:1)
+print(list("1(c)" = p_1c))
+
+tmp <- c(4, 6, 3)
+print(list("1(d)tmp" = tmp))
+
+p_1e <- rep(c(4, 6, 3), times = 10)
+print(list("1(e)" = p_1e))
+
+p_1f <- rep(c(4, 6, 3), times = c(11, 10, 10))
+print(list("1(f)" = p_1f))
+
+p_1g <- rep(c(4, 6, 3), times = c(10, 20, 30))
+print(list("1(g)" = p_1g))
+```
+
+```{r}
+#1.2
+x <- seq(3, 6, by = 0.1)
+vector_val <- exp(x) * cos(x)
+print(vector_val)
+```
+
+```{r}
+#1.3
+# (a)
+a_vec <- (0.1^seq(3,36,by=3)) * (0.2^seq(1,34,by=3))
+print(list(answer1_3a = a_vec))
+
+# (b)
+b_vec <- (2^(1:25)) / (1:25)
+print(list(answer1_3b = b_vec))
+```
+
+```{r}
+#1.4
+# (a)
+i <- 10:100
+sum_a <- sum(i^3 + 4*i^2)
+print(list(answer1_4a = sum_a))
+
+# (b)
+i <- 1:25
+sum_b <- sum((2^i)/i + (3^i)/(i^2))
+print(list(answer1_4b = sum_b))
+```
+
+```{r}
+#1.5
+# (a)
+labels_a <- paste("label", 1:30)
+print(list(answer1_5a = labels_a))
+
+# (b) 
+fn_b <- paste0("fn", 1:30)
+print(list(answer1_5b = fn_b))
+```
+
+```{r}
+#1.6
+set.seed(50)
+xVec <- sample(0:999, 250, replace = T)
+yVec <- sample(0:999, 250, replace = T)
+n <- length(xVec)
+
+# (a)
+result_6a <- yVec[2:n] - xVec[1:(n-1)]
+print("Problem 6a:")
+print(head(result_6a))
+
+# (b)
+result_6b <- sin(yVec[1:(n-1)]) / cos(xVec[2:n])
+print("Problem 6b:")
+print(head(result_6b))
+
+# (c)
+result_6c <- xVec[1:(n-2)] + 2*xVec[2:(n-1)] - xVec[3:n]
+print("Problem 6c:")
+print(head(result_6c))
+
+# (d)
+result_6d <- sum(exp(-xVec[2:n]) / (xVec[1:(n-1)] + 10))
+print("Problem 6d:")
+print(result_6d)
+```
+
+```{r}
+#1.7
+# (a)
+val_greater600 <- yVec[yVec > 600]
+print("Problem 7a:")
+print(val_greater600)
+
+# (b)
+idx_greater600 <- which(yVec > 600)
+print("Problem 7b:")
+print(idx_greater600)
+
+# (c)
+x_correspond <- xVec[yVec > 600]
+print("Problem 7c:")
+print(x_correspond)
+
+# (d)
+x_mean <- mean(xVec)
+result_7d <- sqrt(abs(xVec - x_mean))
+print("Problem 7d:")
+print(head(result_7d))
+
+# (e)
+y_max <- max(yVec)
+y_within_200 <- sum(abs(yVec - y_max) <= 200)
+print("Problem 7e:")
+print(y_within_200)
+
+# (f)
+x_divisible_2 <- sum(xVec %% 2 == 0)
+print("Problem 7f:")
+print(x_divisible_2)
+
+# (g)
+x_sorted_y <- xVec[order(yVec)]
+print("Problem 7g:")
+print(x_sorted_y)
+
+# (h)
+idx <- seq(1, length(yVec), by = 3)
+ans_7h <- yVec[idx]
+print("Problem 7h:")
+ans_7h
+```
+
+```{r}
+#1.8
+num <- seq(2,38, by = 2)
+den <- seq(3, 39, by = 2)
+terms <- cumprod(num / den)
+s <- 1 + sum(terms)
+s
+```
+
+```{r}
+#2.1
+(A <- matrix(c(1, 5, -2, 1, 2, -1, 3, 6, -3), nrow = 3))
+
+# (a)
+A3 <- A %*% A %*% A
+A3
+
+# (b)
+A2 <- A
+A2[, 3] <- A[, 2] + A[, 3]
+A2
+```
+
+```{r}
+#2.2
+B <- matrix(c(10, -10, 10), nrow=15, ncol = 3, byrow = TRUE)
+crossprod(B)
+```
+
+```{r}
+#2.3
+matE <- matrix(0, nrow = 6, ncol = 6)
+
+matE[row(matE) == col(matE) + 1] <- 1
+matE[row(matE) == col(matE) - 1] <- 1
+matE
+```
+
+```{r}
+#2.4
+rows <- 1:5
+cols <- 1:5
+
+mat <- outer(rows, cols, function(i, j) i + j - 2)
+print(mat)
+```
+
+```{r}
+#2.5
+# (a)
+mat5a <- outer(0:4, 0:4, function(i, j) (i + j) %% 5)
+mat5a
+
+# (b)
+mat5b <- outer(0:9, 0:9, function(i, j) (i + j) %% 10)
+mat5b
+
+# (c)
+mat5c <- outer(0:8, 0:8, function(i, j) (i - j) %% 9)
+mat5c
+```
+
+```{r}
+#2.6
+A <- matrix(c(
+  1,2,3,4,5,
+  2,1,2,3,4,
+  3,2,1,2,3,
+  4,3,2,1,2,
+  5,4,3,2,1
+), nrow=5, byrow=TRUE)
+y <- c(7, -1, -3, 5, 17)
+
+sol <- solve(A, y)
+sol
+```
+
+```{r}
+#2.7
+set.seed(75)
+aMat <- matrix(sample(10, size = 60, replace = T), nr = 6)
+
+# (a)
+num_gt4 <- rowSums(aMat > 4)
+num_gt4
+
+# (b)
+rows_sevens <- which(rowSums(aMat == 7) == 2)
+rows_sevens
+
+# (c)
+cs <- colSums(aMat)
+
+which(outer(cs, cs, "+") > 75, arr.ind = TRUE)
+
+which(outer(cs, cs, "+") > 75 & upper.tri(outer(cs, cs, "+")), arr.ind = TRUE)
+```
+
+```{r}
+#2.8
+# (a)
+ans_2_8a <- sum(outer((1:20)^4, 4:8, "/"))
+ans_2_8a
+
+# (b)
+ans_2_8b <- sum((1:20)^4 / (3 + outer(1:20, 1:5, "*")))
+ans_2_8b
+
+# (c)
+ans_2_8c <- sum(sapply(1:10, function(i) sum(i^4 /(3 + i * (1:i)))))
+ans_2_8c
+```
+
+```{r}
+#3.1
+# (a)
+tmpFn1 <- function(xVec) {
+  n <- length(xVec)
+  xVec ^ (1:n)
+}
+tmpFn2 <- function(xVec) {
+  n <- length(xVec)
+  (xVec^(1:n))/(1:n)
+}
+
+# (b)
+tmpFn3 <- function(x, n) {
+  1 + sum(x^(1:n) / (1:n))
+}
+```
+
+```{r}
+#3.2
+tmpFn <- function(xVec) {
+  n <- length(xVec)
+  (xVec[-c(n-1, n)] + xVec[-c(1, n)] + xVec[-c(1, 2)]) / 3
+}
+```
+
+```{r}
+#3.3
+tmpFn <- function(xVec) {
+  ifelse(xVec < 0,
+         xVec^2 + 2*xVec + 3,
+         ifelse(xVec < 2,
+                xVec + 3,
+                xVec^2 + 4*xVec - 7))
+}
+
+tmp <- seq(-3, 3, len=100)
+plot(tmp, tmpFn(tmp), type="l")
+```
+
+```{r}
+#3.4
+doubleOdd <- function(mat) {
+  mat[mat %% 2 == 1] <- mat[mat %% 2 == 1] * 2
+  mat
+}
+```
+
+```{r}
+#3.5
+makeTri_Mat <- function(n, k) {
+  mat <- diag(k, n)
+  mat[abs(row(mat) - col(mat)) == 1] <- 1
+  mat
+}
+
+makeTri_Mat(5, 2)
+```
+
+```{r}
+#3.6
+quadrant <- function(alpha) {
+  1 + (alpha %% 360) %/% 90
+}
+```
+
+```{r}
+#3.7
+weekday <- function(day, month, year) {
+  m <- ifelse(month < 3, month + 12, month)
+  y <- ifelse(month < 3, year - 1, year)
+  d <- day
+  yy <- y %% 100
+  c  <- y %/% 100
+  
+  f <- (floor(2.6*m - 0.2) + d + yy + yy %/% 4 + c %/% 4 - 2*c) %% 7
+  
+  weekdays <- c("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+  
+  return(weekdays[f])
+}
+```
+
+```{r}
+#3.8
+# (a)
+testLoop <- function(n) {
+  if (n < 4) stop("n must be at least 4")
+  x <- rep(NA, n-1)
+  x[1] <- 1
+  x[2] <- 2
+  for (j in 3:(n-1)) {
+    x[j] <- x[j-1] + 2 / x[j-1]
+  }
+  x
+}
+
+# (b)
+testLoop2 <- function(yVec) {
+  n <- length(yVec)
+  sum(exp(seq(along=yVec)))
+}
+```
+
+```{r}
+#3.9
+# (a)
+quadmap <- function(start, rho, niter) {
+  x <- numeric(niter)
+  x[1] <- start
+  for (i in 2:niter) {
+    x[i] <- rho * x[i-1] * (1 - x[i-1])
+  }
+  return(x)
+}
+
+# (b)
+quadmap2 <- function(start, rho, tol = 0.02, maxiter = 10000) {
+  x1 <- start
+  x2 <- rho * x1 * (1 - x1)
+  niter <- 1
+  while (abs(x1 - x2) >= tol && niter < maxiter) {
+    x1 <- x2
+    x2 <- rho * x1 * (1 - x1)
+    niter <- niter + 1
+  }
+  if (niter >= maxiter) return(NA)
+  niter
+}
+```
+
+```{r}
+#3.10
+# (a)
+tmpFn <- function(xVec) {
+  n <- length(xVec)
+  xbar <- mean(xVec)
+  denom <- sum((xVec - xbar)^2)
+  r1 <- sum((xVec[2:n] - xbar) * (xVec[1:(n-1)] - xbar)) / denom
+  r2 <- sum((xVec[3:n] - xbar) * (xVec[1:(n-2)] - xbar)) / denom
+  return(list(r1 = r1, r2 = r2))
+}
+
+# (b)
+tmpFn2 <- function(xVec, k) {
+  n <- length(xVec)
+  xbar <- mean(xVec)
+  denom <- sum((xVec - xbar)^2)
+  r <- sapply(0:k, function(lag) {
+    if (lag == 0) {
+      return(1)
+    } else {
+      num <- sum((xVec[(lag+1):n] - xbar) * (xVec[1:(n-lag)] - xbar))
+      return(num / denom)
+    }
+  })
+  names(r) <- paste0("r", 0:k)
+  return(r)
+}
+```
+
+```{r}
+#4.1
+# (a)
+z1 <- function(xVec, yVec) {
+  if (length(xVec) == 0 || length(yVec) == 0) return(integer(0))
+  rowSums(outer(xVec, yVec, function(x, y) y < x))
+}
+
+# (b)
+z2 <- function(xVec, yVec) {
+  if (length(xVec) == 0 || length(yVec) == 0) return(integer(0))
+  sapply(xVec, function(x) sum(yVec < x))
+}
+
+# (c)
+z3 <- function(xVec, yVec) {
+  if (length(xVec) == 0 || length(yVec) == 0) return(integer(0))
+  vapply(xVec, function(x) sum(yVec < x), integer(1))
+}
+
+# (d)
+z1(numeric(0), y)
+z1(x, numeric(0))
+
+# (e)
+system.time( replicate(1000, z1(x, y)) )
+system.time( replicate(1000, z2(x, y)) )
+system.time( replicate(1000, z3(x, y)) )
+```
+
+```{r}
+#4.2
+# (a)
+noNAcols <- function(mat) {
+  stopifnot(is.matrix(mat))
+  mat[, colSums(is.na(mat)) == 0, drop = FALSE]
+}
+
+# (b)
+noNArowscols <- function(mat) {
+  stopifnot(is.matrix(mat))
+  keepRows <- rowSums(is.na(mat)) == 0
+  keepCols <- colSums(is.na(mat)) == 0
+  mat[keepRows, keepCols, drop = FALSE]
+}
+```
+
+```{r}
+#4.3
+# (a)
+empCopula <- function(u, v, xVec, yVec) {
+  stopifnot(length(xVec) == length(yVec), length(xVec) > 0)
+  n <- length(xVec)
+  r <- rank(xVec)
+  s <- rank(yVec)
+  mean((r / (n+1) <= u) & (s / (n+1) <= v))
+}
+
+# (b)
+empCopula2 <- function(u, v, xVec, yVec) {
+  stopifnot(length(xVec) == length(yVec), length(xVec) > 0, length(u) == length(v))
+  n <- length(xVec)
+  r <- rank(xVec)
+  s <- rank(yVec)
+  mapply(function(ui, vi) {
+    mean((r / (n+1) <= ui) & (s / (n+1) <= vi))
+  }, u, v)
+}
+```
+
+```{r}
+#4.4
+# (a)
+funA <- function(n) {
+  t <- 0
+  for (r in 1:n) {
+    for (s in 1:r) {
+      t <- t + s^2 / (10 + 4*r^3)
+    }
+  }
+  t
+}
+
+# (b)
+funB <- function(n) {
+  R <- row(matrix(0, n, n))
+  S <- col(matrix(0, n, n))
+  sum((S <= R) * (S^2) / (10 + 4*R^3))
+}
+
+# (c)
+funC <- function(n) {
+  M <- outer(1:n, 1:n, function(r, s) ifelse(s <= r, s^2 / (10 + 4*r^3), 0))
+  sum(M)
+}
+
+# (d)
+sum_squares <- function(r) {
+  num <- r*(r+1)*(2*r+1)/6
+  num / (10 + 4*r^3)
+}
+funD <- function(n) sum(sapply(1:n, sum_squares_over))
+
+# (e)
+funE <- function(n) sum(unlist(lapply(1:n, sum_squares_over), use.names = FALSE))
+
+# (f)
+funF <- function(n) {
+  grid <- expand.grid(r = 1:n, s = 1:n)
+  sum(mapply(function(r, s) as.integer(s <= r) * s^2 / (10 + 4*r^3),
+             grid$r, grid$s))
+}
+```
+
+```{r}
+#4.5
+# (a)
+queue <- function(n, aRate, sRate){
+  A <- rexp(n, rate = aRate)
+  S <- rexp(n, rate = sRate)
+  
+  W<- numeric(n + 1)
+  W[1] <- 0
+  
+  for (j in 1:n){
+    W[j + 1] <- max(0, W[j] + S[j] - A[j])
+  }
+  W[n + 1]
+}
+set.seed(1)
+queue(50,2,2)
+
+
+# (b)
+queueLoop <- function(n, aRate, sRate, reps = 1000){
+  out <- numeric(reps)
+  for (i in 1:reps){
+    out[i] <- queue(n, aRate, sRate)
+  }
+  out
+}
+
+#Repetition
+queueRep <- function(n, aRate, sRate, reps =1000){
+  replicate (reps, queue(n, aRate, sRate))
+}
+
+system.time(queueLoop(50,2,2,10000))
+system.time(queueRep(50,2,2,10000))
+
+# (c)
+queueVec <- function(n, aRate, sRate){
+  D <- rexp(n, rate = sRate) - rexp(n, rate = aRate)
+  W <- Reduce(
+    function(prev, d) max(0, prev + d),
+    D,
+    init = 0, 
+    accumulate = TRUE
+  )
+  tail(W, 1)
+}
+
+set.seed(1)
+queueVec(50, 2, 2)
+```
+
+```{r}
+#4.6
+# (a)
+rwalk <- function(n){
+  steps <- sample(c(-1, 1), n, replace=TRUE, prob = c(0.5, 0.5))
+  S <- c(0, cumsum(steps))
+  return(S)
+}
+
+# (b)
+rwalkPos <- function(n){
+  S <- rwalk(n)
+  sum(S > 0)
+}
+
+# (c)
+rwalkPos1 <- function(nReps, n){
+  out <- numeric(nReps)
+  for (i in 1:nReps){
+    out[i] <- rwalkPos(n)
+  }
+  out
+}
+
+# (d)
+# It is not possible here.
+```
+
+```{r}
+#5.1
+# (a)
+tsEwma <- function(tsDat, m0 = 0, delta = 0.7) {
+  n <- length(tsDat)
+  m <- numeric(n)
+  prev <- m0
+  
+  for (t in 1:n) {
+    e <- tsDat[t] - prev
+    m[t] <- prev + (1 - delta) * e
+    prev <- m[t]
+  }
+  ts(m, start = start(tsDat), frequency = frequency(tsDat))
+}
+
+# (b)
+tsEwma2 <- function(tsDat, m0 = 0, delta = 0.7) {
+  z <- as.numeric(tsDat)
+  n <- length(z)
+  m <- numeric(n)
+  prev <- m0
+  
+  for (t in 1:n) {
+    e <- z[t] - prev
+    m[t] <- prev + (1 - delta) * e
+    prev <- m[t]
+  }
+  
+  ts(m, start = start(tsDat), frequency = frequency(tsDat))
+}
+```
+
+```{r}
+#5.2
+# (a)
+myListFn <- function(n) {
+  x <- rnorm(n, mean = 0, sd = 1)
+  xbar <- mean(x)
+  
+  if (xbar >= 0) {
+    y <- rexp(n, rate = 1 / xbar)
+  } else {
+    z <- rexp(n, rate = 1 / (-xbar))
+    y <- -z
+  }
+  k <- sum(abs(y) > abs(x))
+  list(xVec = x, yVec = y, count = k)
+}
+
+# (b)
+set.seed(123)
+myList <- lapply(rep(10, 1000), myListFn)
+
+# (c)
+length(myList)
+str(myList[[1]])
+
+# (d)
+yMat <- sapply(myList, function(elem) elem$yVec)
+dim(yMat)
+
+# (e)
+myList_noCount <- lapply(myList, function(elem) elem[names(elem) != "count"])
+
+# (f)
+myList_gt2 <- Filter(function(elem) elem$count > 2, myList)
+length(myList_gt2)
+```
+
+```{r}
+#5.3
+# (a)
+w <- 1:10
+part_a <- sapply(myList, function(e) sum(w * e$xVec) / sum(w * e$yVec))
+
+# (b)
+part_b <- t(sapply(myList, function(e) e$xVec - e$yVec))
+
+# (c)
+x2 <- sapply(myList, function(e) e$xVec[2])
+y2 <- sapply(myList, function(e) e$yVec[2])
+ni <- sapply(myList, function(e) e$count)
+part_c <- sum((1:1000) * x2) / sum(ni * y2)
+```
+
+```{r}
+#5.4
+testA <- array(sample(1:60, 60, replace = FALSE), dim = c(5, 4, 3))
+# (a)
+testFn <- function(arr) {
+  d1 <- dim(arr)[1]
+  W <- sweep(arr, MARGIN = c(2, 3), STATS = apply(arr, c(2, 3), min), FUN = "-")
+  means <- apply(arr, c(2, 3), mean)
+  maxes <- apply(arr, c(2, 3), max)
+  Z <- means - maxes
+  list(W = W, Z = Z)
+}
+
+# (b)
+testFn2 <- function(arr) {
+  apply(arr, c(2, 3), sum)
+}
+```
+
+```{r}
+#5.5
+
+```
