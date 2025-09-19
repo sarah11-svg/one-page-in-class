@@ -1,0 +1,21 @@
+---
+title: "9.19"
+format: pdf
+editor: visual
+---
+
+```{r}
+data(OrchardSprays)
+head(OrchardSprays)
+summary(OrchardSprays)
+```
+
+```{r}
+boxplot(decrease ~ treatment, data = OrchardSprays,
+        main = "Effectiveness of Orchard Sprays",
+        xlab = "Treatment", ylab = "Decrease in insect count")
+```
+
+```{r}
+# The boxplot shows that treatments E, F, G, and H led to much higher decreases in insect counts compared to A, B, and C. Treatment H in particular has the highest median effectiveness. Lower treatments (A and B) show very little reduction.
+```
